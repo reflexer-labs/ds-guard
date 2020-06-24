@@ -19,7 +19,7 @@ pragma solidity >=0.4.23;
 
 import "ds-auth/auth.sol";
 
-contract DSGuardEvents {
+abstract contract DSGuardEvents {
     event LogPermit(
         bytes32 indexed src,
         bytes32 indexed dst,
@@ -40,7 +40,7 @@ contract DSGuard is DSAuth, DSAuthority, DSGuardEvents {
 
     function canCall(
         address src_, address dst_, bytes4 sig
-    ) public view returns (bool) {
+    ) override public view returns (bool) {
         bytes32 src = bytes32(bytes20(src_));
         bytes32 dst = bytes32(bytes20(dst_));
 
